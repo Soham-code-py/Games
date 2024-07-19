@@ -49,13 +49,23 @@ def p1():
         print("The number was", number)
         exit()
 
-def CPU():
-    global cpu_number, num_1, num_2
+def CPU1():
+    global num_1, num_2, cpu_number
+    cpu_number = randint(num_1, num_2)
+    print("CPU's turn:", cpu_number)       #CPU
+    print()
+    if cpu_number == number:          
+        print("CPU Wins!")
+        print("The number was", number)
+        exit()
+
+def CPU2():
+    global num_1, num_2, cpu_number
     cpu_number = randint(num_1, num_2)
     print("CPU's turn:", cpu_number)
     print()
     if cpu_number > number:
-        num_2 = cpu_number - 1                 # Writing CPU
+        num_2 = cpu_number - 1                 # CPU 2
     elif cpu_number < number:
         num_1 = cpu_number + 1
     else:
@@ -70,6 +80,13 @@ cpu_number = "str"   # will not be randomized number
 
 print("Number Generating...")          
 
-while guess != number or cpu_number != number:
-    p1()
-    CPU()
+CPU_level = input("What level would you like to use (1 or 2):")
+
+if CPU_level == str(1):
+    while True:
+        p1()
+        CPU1()
+elif CPU_level == str(2):
+    while True:
+        p1()
+        CPU2()
