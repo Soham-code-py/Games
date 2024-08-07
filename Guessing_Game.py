@@ -96,7 +96,7 @@ cpu_number = "str"   # will not be randomized number
 
 print("Number Generating...")          
 
-CPU_level = input("What level would you like to use (1 or 2):")
+CPU_level = input("What level would you like to use (1, 2 or 3):")
 
 if CPU_level == str(1):
     while True:
