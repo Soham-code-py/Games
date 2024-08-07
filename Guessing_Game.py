@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from random import randint       # import randint
 
 num_1 = "string"       # Setting value for num_1 & num-2
