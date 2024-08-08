@@ -77,13 +77,13 @@ def CPU2():
 
 def CPU3():
     global num_1, num_2, cpu_number
-    cpu_number = randint(num_2/2)
+    cpu_number = round(((num_2-num_1)/2)+num_1)
     print("CPU's turn:", cpu_number)
     print()
     if cpu_number > number:
-        num_2 = cpu_number - 1                 # CPU 3
+        num_2 = cpu_number                 # CPU 3
     elif cpu_number < number:
-        num_1 = cpu_number + 1
+        num_1 = cpu_number
     else:
         print("CPU Wins!")
         print("The number was", number)
