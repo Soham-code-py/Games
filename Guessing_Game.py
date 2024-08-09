@@ -23,7 +23,7 @@ while True:
         print("Erorr: Not a vailed number")
         continue
     num_2 = int(num_2)   # converting str to int
-    
+
     if num_2 > 1000:
         print("Error: number must be less than 1000")
     elif num_2 < -1000:
@@ -33,15 +33,16 @@ while True:
         continue
     else:
         break
-        
-
 
 def p1():
-    guess = int(input("What is your guess: "))
-    if guess > number:
-        print("The number is lower.")          # Player 1 
+    guess = input("What is your guess: ")
+    if not guess.isdigit():
+        print("Please put a valid number (integer).\n")
+        return p1()
+    if int(guess) > number:
+        print("The number is lower.")          # Player 1
         print()
-    elif guess < number:
+    elif int(guess) < number:
         print("The number is higher.")
         print()
     elif guess == "exit":
@@ -56,7 +57,7 @@ def CPU1():
     cpu_number = randint(num_1, num_2)
     print("CPU's turn:", cpu_number)       #CPU
     print()
-    if cpu_number == number:          
+    if cpu_number == number:
         print("CPU Wins!")
         print("The number was", number)
         exit()
@@ -94,7 +95,7 @@ number = randint(num_1, num_2)
 guess = "str"        # Setting guess value to a number that will
 cpu_number = "str"   # will not be randomized number
 
-print("Number Generating...")          
+print("Number Generating...")
 
 CPU_level = input("What level would you like to use (1, 2 or 3):")
 
