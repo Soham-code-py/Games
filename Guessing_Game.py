@@ -13,10 +13,6 @@ while True:
         continue
     num_1 = int(num_1)   # converting str to int
 
-    if num_1 > 1000:
-        print("Error: number must be less than 1000")
-    elif num_1 < -1000:
-        print("Error: number must be more than -1000")
     num_2 = input("What is your second number: ")
 
     if not num_2.isdigit():
@@ -24,11 +20,9 @@ while True:
         continue
     num_2 = int(num_2)   # converting str to int
 
-    if num_2 > 1000:
-        print("Error: number must be less than 1000")
-    elif num_2 < -1000:
-        print("Error: number must be more than -1000")
-    if num_2 - (num_1 - 1) < 10:
+    if num_2 - num_1 > 1000:
+        print("Error: range must be less than 1000")
+    elif num_2 - (num_1 - 1) < 10:
         print("Error: range must be at least 10")
         continue
     else:
@@ -36,17 +30,18 @@ while True:
 
 def p1():
     guess = input("What is your guess: ")
-    if not guess.isdigit():
+    if guess == "exit":
+        exit()
+    elif not guess.isdigit():
         print("Please put a valid number (integer).\n")
         return p1()
+
     if int(guess) > number:
         print("The number is lower.")          # Player 1
         print()
     elif int(guess) < number:
         print("The number is higher.")
         print()
-    elif guess == "exit":
-        exit()
     else:
         print("You Guessed right")
         print("The number was", number)
