@@ -37,30 +37,61 @@ class character:
         self.hp = 100
         self.Str = 140
         self.stl = 30
+        return self
 
     def Ninja(self):
         self.hp = 200
         self.Str = 240
         self.stl = 80
+        return self
     
     def noob(self):
         self.hp = 50
         self.Str = 60
         self.stl = 30
+        return self
     
     def Blaze(self):
         self.hp = 100
         self.Str = 120
         self.stl = 20
+        return self
 
     def Aria(self):
         self.hp = 300
         self.Str = 80
         self.stl = 50
+        return self
 
-def gemGenerater(monstertype, player):
-    if monstertype == "Zombie":
-        character
+def gemGenerater(monstertype, character1):
+    if monstertype == 'Zombie':
+        hp = randint(-20, 30)
+        Str = randint(-10, 20)
+        stl = randint(-20, 5)
+    elif monstertype == 'Goblin':
+        hp = randint(-50, 70)
+        Str = randint(-30, 50)
+        stl = randint(-30, 10)
+    else:
+        hp = randint(-50, 150)
+        Str = randint(-50, 100)
+        stl = randint(-50, 20)
+    print('You got a gem!')
+    print('HP:', hp)
+    print('Str:', Str)
+    print('Stl:', stl)
+    yn = input('Would you like to equip it?')
+    if 'y' in yn.lower():
+        character1.hp += hp
+        character1.Str += Str
+        character1.stl += stl
+        print('Gem equipped!')
+        print('\t', player)
+        print('HP:', character1.hp)
+        print('Str:', character1.Str)
+        print('Stl:', character1.stl)
+
+
 #----------------------------------------------------#
 # Game code
 
@@ -80,6 +111,7 @@ different stats and abillitys.
       
 Characters:
 """)
+
 print("""1. Warrior
       [HP: 100, STR: 140, STL: 30]
       """)
@@ -97,16 +129,17 @@ print("""5. Aria
       """)
 player = input("Choose your character: ")
 
-character = character()
+character_instance = character()
 
 if '1' in player or 'warrior' in player.lower():
-    character.Warrior()
+    player = character_instance.Warrior()
 elif '2' in player or 'ninja' in player.lower():
-    character.Ninja()
+    player = character_instance.Ninja()
 elif '3' in player or 'noob' in player.lower():
-    character.noob()
+    player = character_instance.noob()
 elif '4' in player or 'blaze' in player.lower():
-    character.Blaze()
+    player = character_instance.Blaze()
 elif '5' in player or 'aria' in player.lower():
-    character.Aria()
+    player = character_instance.Aria()
 
+gemGenerater('Wizard', player)
