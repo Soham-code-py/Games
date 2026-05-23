@@ -2,8 +2,8 @@
 
 from random import randint       # import randint
 
-num_1 = "string"       # Setting value for num_1 & num-2
-num_2 = "string"
+numList = []
+tries = 0
 
 while True:
     num_1 = input("What is your first number: ")
@@ -29,33 +29,44 @@ while True:
         break
 
 def p1():
-    guess = input("What is your guess: ")
-    if guess == "exit":
-        exit()
-    elif not guess.isdigit():
-        print("Please put a valid number (integer).\n")
-        return p1()
-
-    if int(guess) > number:
-        print("The number is lower.")          # Player 1
-        print()
-    elif int(guess) < number:
-        print("The number is higher.")
-        print()
-    else:
-        print("You Guessed right")
-        print("The number was", number)
-        exit()
+    global tries
+    try:
+        guess = input("What is your guess: ").strip()  # Player 1 input
+        if guess == "exit":
+            exit()
+        elif not guess.isdigit():
+            print("Please put a valid number (integer).\n")
+            p1()
+        tries += 1
+        if int(guess) > number:
+            print("The number is lower.")          # Player 1
+            print()
+        elif int(guess) < number:
+            print("The number is higher.")
+            print()
+        else:
+            print("You Guessed right")
+            print("The number was", number)
+            print(tries, "tries")
+            exit()
+    except Exception as e:
+        print("\nAn error occurred")
+        print("Please try again.\n")
+        p1()
 
 def CPU1():
     global num_1, num_2, cpu_number
     cpu_number = randint(num_1, num_2)
+    while cpu_number in numList:  # Check if CPU number is already guessed
+        cpu_number = randint(num_1, num_2)  # Regenerate if already guessed
     print("CPU's turn:", cpu_number)       #CPU
     print()
     if cpu_number == number:
         print("CPU Wins!")
         print("The number was", number)
+        print(tries, "tries")
         exit()
+    numList.append(cpu_number)  # Add CPU number to list
 
 def CPU2():
     global num_1, num_2, cpu_number
@@ -69,11 +80,12 @@ def CPU2():
     else:
         print("CPU Wins!")
         print("The number was", number)
+        print(tries, "tries")
         exit()
 
 def CPU3():
     global num_1, num_2, cpu_number
-    cpu_number = round(((num_2-num_1)/2)+num_1)
+    cpu_number = (num_1 + num_2) // 2
     print("CPU's turn:", cpu_number)
     print()
     if cpu_number > number:
@@ -83,6 +95,7 @@ def CPU3():
     else:
         print("CPU Wins!")
         print("The number was", number)
+        print(tries, "tries")
         exit()
 
 
